@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="searchApp">
+
+<head>
+	<meta charset="UTF-8">
+	<title>rentalcars.com</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+	<link rel="stylesheet" href="library/jquery-ui/jquery-ui.min.css">
+	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+	<script src="library/jquery-ui/jquery-ui.min.js"></script>
+	<script src="library/angular/angular.js"></script>
+	<script src="library/angular/angular-route.min.js"></script>
+	<script src="library/angular/angular-cookies.min.js"></script>
+	<script src="js/app.js"></script>
+	<script src="js/services.js"></script>
+	<script src="js/directives.js"></script>
+	<script src="js/filters.js"></script>
+	<script src="js/controllers.js"></script>
+
+</head>
+
+<body ng-controller="MainCtrl as main">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<label class="radio-inline">
+					<input ng-model="main.frame" selected="selected" type="radio" name="radio" id="radio-pickup" value="pickup">
+					{{main.translations.pickUp}}
+				</label>
+				<label class="radio-inline">
+					<input ng-model="main.frame" type="radio" name="radio" id="radio-dropoff" value="dropoff">
+					{{main.translations.dropOff}}
+				</label>
+				<form class="form-horizontal" role="form">
+					<ng-view></ng-view>
+					<hr>
+					<div class="form-group" ng-controller="DateCtrl">
+						<input readonly date="date.pickup" format="date.format" pickup="date.pickup" date-picker ng-model="date.pickup">
+						<input readonly date="date.dropoff" format="date.format" pickup="date.pickup" date-picker ng-model="date.dropoff">
+						{{date}}
+					</div>
+					<hr>
+					<h4>{{main.translations.driverAge}}</h4>
+					<div class="drivers-age">
+						<input type="checkbox" id="checkbox-age">
+						<label for="checkbox-age">{{main.translations.driverAgeBetween}}</label>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>
